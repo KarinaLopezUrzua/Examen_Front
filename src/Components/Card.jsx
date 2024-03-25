@@ -1,20 +1,106 @@
-import React from "react";
+import React, { useReducer } from "react";
+import { Link } from "react-router-dom";
+import "../Styles/Card.css";
 
-
-const Card = ({ name, username, id }) => {
-
-  const addFav = ()=>{
-    // Aqui iria la logica para agregar la Card en el localStorage
+const getImageForId = (id) => {
+  if ([1, 6, 7, 8].includes(id)) {
+    return "/images/odontologo_h.jpg";
+  } else {
+    return "/images/odontologo_m.jpg";
   }
+};
+
+// Reductor
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "ADD_FAV":
+      const isAlreadyFavorite = state.favorites.some(
+        (fav) => fav.id === action.payload.id
+      );
+      if (!isAlreadyFavorite) {
+        const newFavorites = [...state.favorites, action.payload];
+        localStorage.setItem(
+          "odontologosFavoritos",
+          JSON.stringify(newFavorites)
+        );
+        alert("¡Añadido a favoritos!", action.payload);
+        return { ...state, favorites: newFavorites };
+      } else {
+        alert("El dentista ya está en favoritos.");
+        return state; // Retornar el estado actual si el dentista ya está en favoritos.
+      }
+
+    case "DELETE_FAV":
+      const filteredFavorites = state.favorites.filter(
+        (fav) => fav.id !== action.payload
+      );
+      localStorage.setItem(
+        "odontologosFavoritos",
+        JSON.stringify(filteredFavorites)
+      );
+      alert("¡Eliminado de favoritos!");
+      return { ...state, favorites: filteredFavorites };
+    default:
+      return state;
+  }
+};
+
+const Card = ({ info }) => {
+  console.log("Información del dentista:", info); // Verifica la información del dentista
+
+  const initialState = {
+    favorites: JSON.parse(localStorage.getItem("odontologosFavoritos")) || [],
+  };
+
+  console.log("Estado inicial:", initialState); // Verifica el estado inicial
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  console.log("Estado actual:", state);
+
+    // useEffect para escribir en localStorage cuando el estado de favorites cambia
+    // useEffect(() => {
+    //   localStorage.setItem("odontologosFavoritos", JSON.stringify(state.favorites));
+    // }, [state.favorites]); // Se ejecuta cada vez que state.favorites cambia
+  
 
   return (
     <div className="card">
-        {/* En cada card deberan mostrar en name - username y el id */}
+      {info && (
+        <div className="information_title" key={info.id + info.name}>
+          <h3>{info.name} </h3>
+          <h4>
+            {info.id} ▪ {info.username} ▪
+          </h4>
+        </div>
+      )}
 
-        {/* No debes olvidar que la Card a su vez servira como Link hacia la pagina de detalle */}
+      <div>
+        <img
+          className="img_card"
+          src={getImageForId(info.id)}
+          alt={`Imagen odontologo ${info.id}`}
+        />
+      </div>
 
-        {/* Ademas deberan integrar la logica para guardar cada Card en el localStorage */}
-        <button onClick={addFav} className="favButton">Add fav</button>
+      {info && (
+        <div className="information" key={info.id + info.username}>
+          <h5> Prof. Cirujano Dentista </h5>
+          <Link to={"/dentista/" + info.id}>
+            <p>🔍 More information </p>
+          </Link>
+        </div>
+      )}
+      <button
+        onClick={() => {
+          console.log("Botón de añadir favorito clickeado");
+          console.log("Info:", info);
+          dispatch({ type: "ADD_FAV", payload: info });
+        }}
+        className="boton_card"
+      >
+        <Link to={"/favs"}>🌟 Add fav </Link>
+      </button>
     </div>
   );
 };
