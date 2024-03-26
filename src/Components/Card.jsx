@@ -10,6 +10,11 @@ const getImageForId = (id) => {
   }
 };
 
+// const ACTIONS = {
+//   AGREGAR_FAVORITO: "addFav",
+//   ELIMINAR_FAVORITO: "removeFav",
+// };
+
 // Reductor
 const reducer = (state, action) => {
   switch (action.type) {
@@ -26,8 +31,8 @@ const reducer = (state, action) => {
         alert("¡Añadido a favoritos!", action.payload);
         return { ...state, favorites: newFavorites };
       } else {
-        alert("El dentista ya está en favoritos.");
-        return state; // Retornar el estado actual si el dentista ya está en favoritos.
+        console.log("El dentista ya está en favoritos.");
+        return state; // Retornar el estado actual si el dentista ya está en favoritos
       }
 
     case "DELETE_FAV":
@@ -56,13 +61,8 @@ const Card = ({ info }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  console.log("Estado actual:", state);
 
-    // useEffect para escribir en localStorage cuando el estado de favorites cambia
-    // useEffect(() => {
-    //   localStorage.setItem("odontologosFavoritos", JSON.stringify(state.favorites));
-    // }, [state.favorites]); // Se ejecuta cada vez que state.favorites cambia
-  
+  console.log("Estado actual:", state);
 
   return (
     <div className="card">
@@ -96,6 +96,8 @@ const Card = ({ info }) => {
           console.log("Botón de añadir favorito clickeado");
           console.log("Info:", info);
           dispatch({ type: "ADD_FAV", payload: info });
+
+
         }}
         className="boton_card"
       >
@@ -106,3 +108,5 @@ const Card = ({ info }) => {
 };
 
 export default Card;
+
+
