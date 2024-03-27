@@ -12,13 +12,13 @@ code {
     monospace;
 }
 
-.favButton {
+/* .favButton {
   background-color: rgba(136, 136, 136, 0.116);
   padding: 10px;
   border: none;
   width: 100%;
   cursor: pointer;
-}
+} */
 
 h1 {
   text-align: center;
@@ -74,7 +74,7 @@ form {
   margin: 0 auto;
 }
 
-.card {
+/* .card {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
@@ -99,7 +99,7 @@ form {
   height: auto;
   flex-wrap: wrap;
   margin: 0 auto;
-}
+} */
 
 table {
   border-collapse: collapse;
@@ -137,7 +137,7 @@ tr:nth-child(even) {
   padding: 0.9rem 1rem;
 }
 
-.contenedor_contact {
+/* .contenedor_contact {
   display: flex;
   justify-content: space-evenly;
   margin: 20px;
@@ -151,10 +151,10 @@ tr:nth-child(even) {
 .card-detail {
   width: 30vw;
   margin: 0px;
-  height: 490px;
+  justify-content: start;
 }
 
 .card-detail:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transform: none;
-}
+} */

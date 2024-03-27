@@ -1,17 +1,14 @@
 //import React from 'react'
 import Card from "../Components/Card";
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { useTheme } from "../Components/Context/global.context";
 
 //TODO: Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Home = () => {
+  const { theme } = useTheme(); // Obtiene el estado del tema del contexto global
+
   //user : variable que contiene la informacion de la
   // setUsers : funcion que se usa para modificar para lo que tenga la variable
   const [user, setUsers] = useState([]);
@@ -42,9 +39,14 @@ const Home = () => {
 
       <div className="card-grid">
         {user.map((info) => (
-          <Card key={`${info.id}`} info={info} />
+          <Card key={`${info.id}`} info={info} buttonType="Add Fav" />
         ))}
       </div>
+      {/* <div>
+      {user.map((dentista) => (
+         dentista && <Form key={`${dentista.id+1}`} dentistas={dentista}/>
+        ))}
+      </div> */}
     </main>
   );
 };

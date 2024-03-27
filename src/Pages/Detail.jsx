@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../Styles/Card.css";
-import { Link } from "react-router-dom";
+import "../Styles/Contact.css";
+import { useTheme } from "../Components/Context/global.context"; // Importa el hook useTheme
 
 //TODO: Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Detail = () => {
+  const { theme } = useTheme();
+
   const [dentist, setDentist] = useState([]);
   const { id } = useParams();
   const getImageForId = (id) => {
@@ -17,9 +20,7 @@ const Detail = () => {
     }
   };
 
-  const addFav = () => {
-    // TODO: Aqui iria la logica para agregar la Card en el localStorage
-  };
+  const addFav = () => {};
   const url = `https://jsonplaceholder.typicode.com/users/${id}`;
 
   const getSpecialityForId = (id) => {
@@ -39,7 +40,9 @@ const Detail = () => {
       <div className="contenedor_contact">
         <div>
           <h1>Detail Dental Professional</h1>
-          <p style={{ margin: "0px" }}>Cirujano Dentista Nº{dentist.id} </p>
+          <p style={{ marginBottom: "0px" }}>
+            Cirujano Dentista Nº{dentist.id}{" "}
+          </p>
           <p style={{ margin: "0px" }}> {getSpecialityForId(dentist.id)}</p>
           <div>
             <img
@@ -54,6 +57,7 @@ const Detail = () => {
         {dentist && (
           <div className="information_title">
             <h3>{dentist.name} </h3>
+            <h4>▪ {dentist.username} ▪</h4>
             <div>
               <img
                 className="img_card"
@@ -66,18 +70,23 @@ const Detail = () => {
               {dentist.email}
             </h4>
             <h4>
-              <span>Telefono: </span>
+              <span>Teléfono: </span>
               {dentist.phone}
             </h4>
             <h4>
               <span>Sitio web: </span>
               {dentist.website}
             </h4>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <h4>
+              <span>Código para agendar: </span>
+              {dentist.address?.zipcode}
+            </h4>
+
+            {/* <div style={{ display: "flex", justifyContent: "center" }}>
               <button onClick={addFav} className="boton_card">
                 <Link to={"/favs"}>🌟 Add fav </Link>
               </button>
-            </div>
+            </div> */}
           </div>
         )}
       </div>

@@ -1,6 +1,7 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FormStyles from "../Styles/Form.module.css";
+import axios from "axios";
 
 const Form = ({ onSubmitSuccess }) => {
   const [formulario, setFormulario] = useState({
@@ -8,9 +9,17 @@ const Form = ({ onSubmitSuccess }) => {
     apellido: "",
     email: "",
     telefono: "",
+    dentista: "",
   });
 
   const [err, setErr] = useState(false);
+  const [dentistas, setDentistas] = useState([]);
+
+  const url = "https://jsonplaceholder.typicode.com/users";
+
+  useEffect(() => {
+    axios.get(url).then((res) => setDentistas(res.data));
+  }, []);
 
   //valida numeros chile 569xxxxxxxx
   const numRegex = /^(\+?56)?(\s?)(0?9)(\s?)[98765432]\d{7}$/;
@@ -53,7 +62,10 @@ const Form = ({ onSubmitSuccess }) => {
             formulario.email +
             " || " +
             "Telefono: " +
-            formulario.telefono
+            formulario.telefono +
+            " || " +
+            "Dentista: " +
+            formulario.dentista
         );
       }
     }
@@ -61,8 +73,6 @@ const Form = ({ onSubmitSuccess }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <p>Send us your questions and we will contact you</p>
-
       <div className={FormStyles.contenedorForm}>
         <div className={FormStyles.cardForm}>
           <div>
@@ -70,25 +80,27 @@ const Form = ({ onSubmitSuccess }) => {
               {" "}
               ◽ Nombre Completo ◽
             </label>
-            <input
-              type="text"
-              id="nombre"
-              name="nombre"
-              value={formulario.nombre}
-              onChange={handleChange}
-              className={`${FormStyles.inputForm} ${FormStyles.inputNombre}`}
-              placeholder="Nombre"
-            />
+            <div style={{ display: "flex" }}>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                value={formulario.nombre}
+                onChange={handleChange}
+                className={`${FormStyles.inputForm} ${FormStyles.inputNombre}`}
+                placeholder="Nombre"
+              />
 
-            <input
-              type="text"
-              id="apellido"
-              name="apellido"
-              value={formulario.apellido}
-              onChange={handleChange}
-              className={FormStyles.inputForm}
-              placeholder="Apellido"
-            />
+              <input
+                type="text"
+                id="apellido"
+                name="apellido"
+                value={formulario.apellido}
+                onChange={handleChange}
+                className={FormStyles.inputForm}
+                placeholder="Apellido"
+              />
+            </div>
           </div>
 
           <div>
@@ -114,6 +126,26 @@ const Form = ({ onSubmitSuccess }) => {
               className={`${FormStyles.inputForm} ${FormStyles.email}`}
               placeholder="569xxxxxxxx"
             ></input>
+          </div>
+
+          <div>
+            <label className={FormStyles.labelForm}>
+              {" "}
+              ◽ Seleccionar profesional ◽
+            </label>
+            <select
+              name="dentista"
+              value={formulario.dentista}
+              onChange={handleChange}
+              className={`${FormStyles.inputForm} ${FormStyles.email}`}
+            >
+              <option value="">No tengo preferencia</option>
+              {dentistas.map((dentista) => (
+                <option key={dentista.id} value={dentista.name}>
+                  {dentista.name} - Código: {dentista.address.zipcode}
+                </option>
+              ))}
+            </select>
           </div>
 
           <button type="submit" className={FormStyles.boton}>

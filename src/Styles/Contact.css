@@ -1,0 +1,10 @@
+.contenedor_contact {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 20px;
+  text-align: center;
+}
+
+.successMessage {
+  text-align: center;
+}

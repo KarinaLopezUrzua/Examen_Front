@@ -10,11 +10,6 @@ const getImageForId = (id) => {
   }
 };
 
-// const ACTIONS = {
-//   AGREGAR_FAVORITO: "addFav",
-//   ELIMINAR_FAVORITO: "removeFav",
-// };
-
 // Reductor
 const reducer = (state, action) => {
   switch (action.type) {
@@ -23,6 +18,7 @@ const reducer = (state, action) => {
         (fav) => fav.id === action.payload.id
       );
       if (!isAlreadyFavorite) {
+        
         const newFavorites = [...state.favorites, action.payload];
         localStorage.setItem(
           "odontologosFavoritos",
@@ -50,7 +46,7 @@ const reducer = (state, action) => {
   }
 };
 
-const Card = ({ info }) => {
+const Card = ({ info, buttonType }) => {
   console.log("Información del dentista:", info); // Verifica la información del dentista
 
   const initialState = {
@@ -60,7 +56,6 @@ const Card = ({ info }) => {
   console.log("Estado inicial:", initialState); // Verifica el estado inicial
 
   const [state, dispatch] = useReducer(reducer, initialState);
-
 
   console.log("Estado actual:", state);
 
@@ -91,22 +86,40 @@ const Card = ({ info }) => {
           </Link>
         </div>
       )}
-      <button
-        onClick={() => {
-          console.log("Botón de añadir favorito clickeado");
-          console.log("Info:", info);
-          dispatch({ type: "ADD_FAV", payload: info });
 
+      {buttonType === "Add Fav" && (
+        <button
+          onClick={() => {
+            console.log("Botón de añadir favorito clickeado");
+            console.log("Info:", info);
+            dispatch({ type: "ADD_FAV", payload: info });
+          }}
+          className="boton_card"
+        >
+          <Link to={"/favs"}>💗 Add fav </Link>
+        </button>
+      )}
 
-        }}
-        className="boton_card"
-      >
-        <Link to={"/favs"}>🌟 Add fav </Link>
-      </button>
+      {buttonType === "schedule" && (
+        <button className="boton_card">
+          <Link to={"/contacto"}>📆 To Schedule </Link>
+        </button>
+      )}
+
+      {buttonType === "Delete Fav" && (
+        <button
+          onClick={() => {
+            console.log("Botón de eliminar favorito clickeado");
+            console.log("Info id eleiminado:", info.id);
+            dispatch({ type: "DELETE_FAV", payload: info });
+          }}
+          className="boton_card"
+        >
+          <Link to={"/favs"}>❌ Delete fav </Link>
+        </button>
+      )}
     </div>
   );
 };
 
 export default Card;
-
-
