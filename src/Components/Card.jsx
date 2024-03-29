@@ -51,7 +51,6 @@ const Card = ({ info, buttonType }) => {
     favorites: JSON.parse(localStorage.getItem("odontologosFavoritos")) || [],
   };
 
-  // TODO: REVISAR
   const addFavorite = (info) => {
     const favorites =
       JSON.parse(localStorage.getItem("odontologosFavoritos")) || [];
@@ -62,9 +61,9 @@ const Card = ({ info, buttonType }) => {
         "odontologosFavoritos",
         JSON.stringify([...favorites, info])
       );
-      alert("¡Añadido a favoritos 💗!");
+      alert("Added to favorites 💗!");
     } else {
-      alert("El dentista ya está en favoritos 🚫");
+      alert("The professional is already in favorites 🚫");
     }
   };
 
@@ -79,7 +78,7 @@ const Card = ({ info, buttonType }) => {
       "odontologosFavoritos",
       JSON.stringify(updatedFavorites)
     );
-    alert("¡Eliminado de favoritos ❌!");
+    alert("Removed from favorites ❌!");
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
