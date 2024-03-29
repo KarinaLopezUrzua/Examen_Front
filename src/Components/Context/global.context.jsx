@@ -10,7 +10,6 @@ export const ContextProvider = ({ children }) => {
   const toggleTheme = () => {
     setTheme((prevTheme) => {
       const newTheme = prevTheme === "dark" ? "" : "dark";
-      console.log("Nuevo tema:", newTheme);
       return newTheme;
     });
   };

@@ -15,6 +15,17 @@ const Footer = () => {
       </div>
 
       <div className={"contenedor_logos"}>
+        <img
+          className="styleImg2"
+          src="/images/ico-facebook.png"
+          alt="dh-logo"
+        />
+        <img
+          className="styleImg2"
+          src="/images/ico-instagram.png"
+          alt="dh-logo"
+        />
+
         <a
           className="contened"
           href="https://www.digitalhouse.com/"
@@ -36,6 +47,13 @@ const Footer = () => {
         >
           <img className="styleImg1" src="/images/Git.png" alt="git-logo" />
         </a>
+        <img className="styleImg2" src="/images/ico-tiktok.png" alt="dh-logo" />
+        <img
+          className="styleImg2"
+          src="/images/ico-whatsapp.png
+        "
+          alt="dh-logo"
+        />
       </div>
     </footer>
   );

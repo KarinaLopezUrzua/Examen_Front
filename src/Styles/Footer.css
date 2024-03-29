@@ -8,6 +8,16 @@
   height: 60%;
 }
 
+.styleImg2 {
+  height: 29px;
+  filter: invert(1.4);
+  margin: 5px 11px;
+}
+
+.dark .styleImg2 {
+  filter: none;
+}
+
 footer {
   text-align: center;
   position: relative;
