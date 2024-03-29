@@ -2,7 +2,7 @@ import React from "react";
 import Form from "../Components/Form";
 import "../Styles/Contact.css";
 import { useState } from "react";
-import { useTheme } from "../Components/Context/global.context"; // Importa el hook useTheme
+import { useTheme } from "../Components/Context/global.context";
 
 const Contact = () => {
   const { theme } = useTheme();

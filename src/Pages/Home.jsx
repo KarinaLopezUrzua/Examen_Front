@@ -13,7 +13,7 @@ const Home = () => {
 
   return (
     <main className="">
-      <h1>😁 Sonrisas Saludables: Dentistry Clinic </h1>
+      <h1> 😁 Sonrisas Saludables: Dentistry Clinic </h1>
       <div className="contenedorPagina">
         <h5>
           "At 'Sonrisas Saludables', we are dedicated to caring for your dental

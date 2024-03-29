@@ -15,32 +15,29 @@ const getImageForId = (id) => {
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_FAV":
-      const isAlreadyFavorite = state.favorites.some(
-        (fav) => fav.id === action.payload.id
-      );
-      if (!isAlreadyFavorite) {
-        const newFavorites = [...state.favorites, action.payload];
+      const newFavorite = action.payload;
+      if (state.favorites.some((fav) => fav.id === newFavorite.id)) {
+        return state;
+      } else {
+        const newFavorites = [...state.favorites, newFavorite];
         localStorage.setItem(
           "odontologosFavoritos",
           JSON.stringify(newFavorites)
         );
-        alert("¡Añadido a favoritos!", action.payload);
         return { ...state, favorites: newFavorites };
-      } else {
-        alert("El dentista ya está en favoritos.");
-        return state;
       }
 
     case "DELETE_FAV":
+      const deletedId = action.payload.id;
       const filteredFavorites = state.favorites.filter(
-        (fav) => fav.id !== action.payload
+        (fav) => fav.id !== deletedId
       );
       localStorage.setItem(
         "odontologosFavoritos",
         JSON.stringify(filteredFavorites)
       );
-      alert("¡Eliminado de favoritos!");
       return { ...state, favorites: filteredFavorites };
+
     default:
       return state;
   }
@@ -52,6 +49,37 @@ const Card = ({ info, buttonType }) => {
 
   const initialState = {
     favorites: JSON.parse(localStorage.getItem("odontologosFavoritos")) || [],
+  };
+
+  // TODO: REVISAR
+  const addFavorite = (info) => {
+    const favorites =
+      JSON.parse(localStorage.getItem("odontologosFavoritos")) || [];
+    const isAlreadyFavorite = favorites.some((fav) => fav.id === info.id);
+    if (!isAlreadyFavorite) {
+      dispatch({ type: "ADD_FAV", payload: info });
+      localStorage.setItem(
+        "odontologosFavoritos",
+        JSON.stringify([...favorites, info])
+      );
+      alert("¡Añadido a favoritos 💗!");
+    } else {
+      alert("El dentista ya está en favoritos 🚫");
+    }
+  };
+
+  const deleteFavorite = (info) => {
+    const favorites =
+      JSON.parse(localStorage.getItem("odontologosFavoritos")) || [];
+
+    const updatedFavorites = favorites.filter((fav) => fav.id !== info.id);
+
+    dispatch({ type: "DELETE_FAV", payload: info });
+    localStorage.setItem(
+      "odontologosFavoritos",
+      JSON.stringify(updatedFavorites)
+    );
+    alert("¡Eliminado de favoritos ❌!");
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -79,41 +107,29 @@ const Card = ({ info, buttonType }) => {
         <div className="information" key={info.id + info.username}>
           <h5> Prof. Dental Surgeon </h5>
           <Link to={"/dentista/" + info.id}>
-            <p>🔍 More information </p>
+            <p> 🔍 More information </p>
           </Link>
         </div>
       )}
 
       {buttonType === "Add Fav" && (
-        <button
-          onClick={() => {
-            console.log("Botón de añadir favorito clickeado");
-            console.log("Info:", info);
-            dispatch({ type: "ADD_FAV", payload: info });
-          }}
-          className="boton_card"
-        >
-          <Link to={"/favs"}>💗 Add fav </Link>
+        <button onClick={() => addFavorite(info)} className="boton_card ">
+          <Link to={"/favs"}> 💗 Add fav </Link>
         </button>
       )}
 
       {buttonType === "schedule" && (
-        <button className="boton_card">
-          <Link to={"/contacto"}>📆 To Schedule </Link>
-        </button>
-      )}
-
-      {buttonType === "Delete Fav" && (
-        <button
-          onClick={() => {
-            console.log("Botón de eliminar favorito clickeado");
-            console.log("Info id eleiminado:", info.id);
-            dispatch({ type: "DELETE_FAV", payload: info });
-          }}
-          className="boton_card"
-        >
-          <Link to={"/favs"}>❌ Delete fav </Link>
-        </button>
+        <>
+          <button
+            onClick={() => deleteFavorite(info)}
+            className="boton_card fix_width"
+          >
+            <Link to={"/home"}> ❌ Delete fav </Link>
+          </button>
+          <button className="boton_card">
+            <Link to={"/contacto"}> 📆 To Schedule </Link>
+          </button>
+        </>
       )}
     </div>
   );

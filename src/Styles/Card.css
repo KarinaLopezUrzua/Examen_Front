@@ -45,7 +45,7 @@
 }
 
 .boton_card {
-  margin: 10px;
+  margin: 3px;
   background-color: rgba(136, 136, 136, 0.116);
   color: white;
   border-radius: 20px;
@@ -57,6 +57,10 @@
 
 .dark .boton_card {
   border: 2px solid #fffffd;
+}
+
+.fix_width {
+  width: 120px;
 }
 
 .card {

@@ -9,7 +9,7 @@ const Favs = ({}) => {
   );
 
   if (!dentistsFavorites || dentistsFavorites.length === 0) {
-    return <h1>No favorites saved.</h1>;
+    return <h1> 😢 No favorites saved </h1>;
   }
 
   return (

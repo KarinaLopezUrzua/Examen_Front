@@ -84,7 +84,7 @@ const Form = ({ onSubmitSuccess }) => {
                 value={formulario.nombre}
                 onChange={handleChange}
                 className={`${FormStyles.inputForm} ${FormStyles.inputNombre}`}
-                placeholder="Nombre"
+                placeholder="Name"
               />
 
               <input
@@ -94,7 +94,7 @@ const Form = ({ onSubmitSuccess }) => {
                 value={formulario.apellido}
                 onChange={handleChange}
                 className={FormStyles.inputForm}
-                placeholder="Apellido"
+                placeholder="Last name"
               />
             </div>
           </div>
@@ -108,7 +108,7 @@ const Form = ({ onSubmitSuccess }) => {
               value={formulario.email}
               onChange={handleChange}
               className={`${FormStyles.inputForm} ${FormStyles.email}`}
-              placeholder="alguien@example.es"
+              placeholder="someone@example.es"
             />
           </div>
 
@@ -145,7 +145,7 @@ const Form = ({ onSubmitSuccess }) => {
           </div>
 
           <button type="submit" className={FormStyles.boton}>
-            Enviar
+            Submit the form
           </button>
         </div>
         <div>
