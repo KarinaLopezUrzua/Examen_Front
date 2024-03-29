@@ -4,11 +4,8 @@ import "../Styles/Contact.css";
 import { useState } from "react";
 import { useTheme } from "../Components/Context/global.context"; // Importa el hook useTheme
 
-//TODO: Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
-
 const Contact = () => {
   const { theme } = useTheme();
-
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
@@ -29,11 +26,7 @@ const Contact = () => {
           </p>
 
           <div>
-            <img
-              // className="img_card"
-              src="/images/completeForm.svg"
-              alt="Imagen form"
-            />
+            <img src="/images/completeForm.svg" alt="Imagen form" />
           </div>
         </div>
 
@@ -42,13 +35,13 @@ const Contact = () => {
         </div>
       </div>{" "}
       {showSuccessMessage && (
-        <h2 className="successMessage">
-          Gracias{" "}
+        <h2 className={`successMessage ${theme === "dark" ? "dark" : ""}`}>
+          Thank you{" "}
           <span>
             {nombre} {apellido}{" "}
           </span>
-          🎉 has quedado registrado en nuestro sistema, te contactaremos cuando
-          antes vía mail.
+          🎉 you have been registered in our system, we will contact you when
+          before by e-mail.
         </h2>
       )}
     </div>

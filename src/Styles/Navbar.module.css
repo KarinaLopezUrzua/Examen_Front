@@ -1,15 +1,10 @@
 .navbarContainer {
   width: 100vw;
   display: flex;
-  /* background-color: rgb(68, 68, 68); */
   padding: 0px 10px;
   border-top: 5px solid #06b6d49c;
   border-bottom: 5px solid #06b6d49c;
 }
-
-/* h4 {
-  color: white;
-} */
 
 h3 {
   color: #06b6d4;
@@ -29,8 +24,6 @@ h3 {
 
 .boton_navbar {
   margin: 16px;
-  /* background-color: #06b6d4; */
-  /* color: white; */
   border-radius: 20px;
   border: 2px solid #484747b3;
   cursor: pointer;

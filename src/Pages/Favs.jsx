@@ -3,19 +3,13 @@ import Card from "../Components/Card";
 import "../Styles/Card.css";
 import "../Styles/Contact.css";
 
-import { useTheme } from "../Components/Context/global.context";
-
-//TODO: Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
-
 const Favs = ({}) => {
-  const { theme } = useTheme();
-
   const dentistsFavorites = JSON.parse(
     localStorage.getItem("odontologosFavoritos")
   );
 
   if (!dentistsFavorites || dentistsFavorites.length === 0) {
-    return <h1>No hay favoritos guardados.</h1>;
+    return <h1>No favorites saved.</h1>;
   }
 
   return (
@@ -39,7 +33,6 @@ const Favs = ({}) => {
       <div className="card-grid card-detail card-fav">
         {dentistsFavorites.map((dentist) => (
           <Card key={dentist.id} info={dentist} buttonType="schedule" />
-          // <Card key={dentist.id} info={dentist} buttonType="Delete Fav" />
         ))}
       </div>
     </div>

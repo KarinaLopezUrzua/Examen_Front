@@ -8,3 +8,7 @@
 .successMessage {
   text-align: center;
 }
+
+.dark .successMessage {
+  color: #fffefd;
+}

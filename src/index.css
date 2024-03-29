@@ -12,24 +12,35 @@ code {
     monospace;
 }
 
-/* .favButton {
-  background-color: rgba(136, 136, 136, 0.116);
-  padding: 10px;
-  border: none;
-  width: 100%;
-  cursor: pointer;
-} */
-
 h1 {
   text-align: center;
   margin: 0px 3px;
+}
+
+.dark h1 {
+  color: #f79818;
+}
+
+.dark h3 {
+  color: #f4941c;
+}
+
+.dark h4 {
+  color: #fffffd;
+}
+
+.dark h5 {
+  color: #fffffd;
+}
+
+.dark p {
+  color: #fffffd;
 }
 
 nav {
   display: flex;
   width: auto;
   justify-content: flex-start;
-  /* padding: 1rem; */
 }
 
 a {
@@ -39,93 +50,22 @@ a {
   cursor: pointer;
 }
 
+.dark a {
+  color: #fffffd;
+}
+
 a:hover {
   color: rgb(36, 117, 135);
-}
-
-footer {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem;
-  position: relative;
-  bottom: 0;
-  width: 90%;
-  height: 40px;
-  margin-top: 2rem;
-}
-
-footer > img {
-  width: 200px;
-  margin: 0;
-}
-
-footer > p {
-  margin: 0;
-  padding-top: 0.7rem;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-around;
-  width: 300px;
-  height: 100px; */
   margin: 0 auto;
-}
-
-/* .card {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
-  align-items: center;
-  width: 200px;
-  padding: 0.5rem 0.5rem 0 0.5rem;
-  border: 0.5px solid rgb(136, 136, 136, 0.3);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.card:hover {
-  box-shadow: 0 3px 4px rgba(36, 117, 135, 0.54);
-  transform: scale(1.1);
-}
-
-.card-grid {
-  display: flex;
-  justify-content: space-evenly;
-  gap: 1.4rem;
-  width: 90vw;
-  height: auto;
-  flex-wrap: wrap;
-  margin: 0 auto;
-} */
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-  display: table;
-  border: 1px solid #ccc;
-}
-
-td,
-th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
 }
 
 .dark {
-  background-color: #12121296;
-  color: white;
-}
-.dark > a {
-  color: white;
+  background-color: #023c52;
 }
 
 .contenedorPagina {
@@ -134,27 +74,5 @@ tr:nth-child(even) {
 }
 
 .contenedorApp {
-  padding: 0.9rem 1rem;
+  padding: 2.9rem 1rem;
 }
-
-/* .contenedor_contact {
-  display: flex;
-  justify-content: space-evenly;
-  margin: 20px;
-  text-align: center;
-}
-
-.successMessage {
-  text-align: center;
-}
-
-.card-detail {
-  width: 30vw;
-  margin: 0px;
-  justify-content: start;
-}
-
-.card-detail:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transform: none;
-} */

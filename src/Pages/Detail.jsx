@@ -3,13 +3,8 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../Styles/Card.css";
 import "../Styles/Contact.css";
-import { useTheme } from "../Components/Context/global.context"; // Importa el hook useTheme
-
-//TODO: Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Detail = () => {
-  const { theme } = useTheme();
-
   const [dentist, setDentist] = useState([]);
   const { id } = useParams();
   const getImageForId = (id) => {
@@ -20,14 +15,13 @@ const Detail = () => {
     }
   };
 
-  const addFav = () => {};
   const url = `https://jsonplaceholder.typicode.com/users/${id}`;
 
   const getSpecialityForId = (id) => {
     if ([1, 2, 5, 9, 10].includes(id)) {
-      return "Ortodoncia - Adulto e Infantil";
+      return "Orthodontics - Adult and Children";
     } else {
-      return "Endodoncista  - Periodoncista ";
+      return "Endodontist - Periodontist";
     }
   };
 
@@ -40,9 +34,7 @@ const Detail = () => {
       <div className="contenedor_contact">
         <div>
           <h1>Detail Dental Professional</h1>
-          <p style={{ marginBottom: "0px" }}>
-            Cirujano Dentista Nº{dentist.id}{" "}
-          </p>
+          <p style={{ marginBottom: "0px" }}>Dental surgeon Nº{dentist.id} </p>
           <p style={{ margin: "0px" }}> {getSpecialityForId(dentist.id)}</p>
           <div>
             <img
@@ -70,23 +62,17 @@ const Detail = () => {
               {dentist.email}
             </h4>
             <h4>
-              <span>Teléfono: </span>
+              <span>Phone: </span>
               {dentist.phone}
             </h4>
             <h4>
-              <span>Sitio web: </span>
+              <span>Website : </span>
               {dentist.website}
             </h4>
             <h4>
-              <span>Código para agendar: </span>
+              <span>Code to schedule : </span>
               {dentist.address?.zipcode}
             </h4>
-
-            {/* <div style={{ display: "flex", justifyContent: "center" }}>
-              <button onClick={addFav} className="boton_card">
-                <Link to={"/favs"}>🌟 Add fav </Link>
-              </button>
-            </div> */}
           </div>
         )}
       </div>

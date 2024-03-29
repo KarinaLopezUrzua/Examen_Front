@@ -26,7 +26,6 @@ const Form = ({ onSubmitSuccess }) => {
 
   const emailRegex = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
 
-  //maneja los cambios en todos los campos del formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormulario({ ...formulario, [name]: value });
@@ -76,10 +75,7 @@ const Form = ({ onSubmitSuccess }) => {
       <div className={FormStyles.contenedorForm}>
         <div className={FormStyles.cardForm}>
           <div>
-            <label className={FormStyles.labelForm}>
-              {" "}
-              ◽ Nombre Completo ◽
-            </label>
+            <label className={FormStyles.labelForm}> ◽ Full name ◽</label>
             <div style={{ display: "flex" }}>
               <input
                 type="text"
@@ -117,7 +113,7 @@ const Form = ({ onSubmitSuccess }) => {
           </div>
 
           <div>
-            <label className={FormStyles.labelForm}> ◽ Telefono ◽</label>
+            <label className={FormStyles.labelForm}> ◽ Phone ◽</label>
             <input
               id="telefono"
               name="telefono"
@@ -131,7 +127,7 @@ const Form = ({ onSubmitSuccess }) => {
           <div>
             <label className={FormStyles.labelForm}>
               {" "}
-              ◽ Seleccionar profesional ◽
+              ◽ Select professional ◽
             </label>
             <select
               name="dentista"
@@ -139,7 +135,7 @@ const Form = ({ onSubmitSuccess }) => {
               onChange={handleChange}
               className={`${FormStyles.inputForm} ${FormStyles.email}`}
             >
-              <option value="">No tengo preferencia</option>
+              <option value="">I have no preference</option>
               {dentistas.map((dentista) => (
                 <option key={dentista.id} value={dentista.name}>
                   {dentista.name} - Código: {dentista.address.zipcode}
@@ -156,7 +152,7 @@ const Form = ({ onSubmitSuccess }) => {
           {err && (
             <h4 className={FormStyles.errorMensaje}>
               {" "}
-              ⚠️ Por favor verifique su información nuevamente
+              ⚠️ Please verify your information again.
             </h4>
           )}
         </div>

@@ -1,6 +1,7 @@
 import React, { useReducer } from "react";
 import { Link } from "react-router-dom";
 import "../Styles/Card.css";
+import { useTheme } from "../Components/Context/global.context";
 
 const getImageForId = (id) => {
   if ([1, 6, 7, 8].includes(id)) {
@@ -18,7 +19,6 @@ const reducer = (state, action) => {
         (fav) => fav.id === action.payload.id
       );
       if (!isAlreadyFavorite) {
-        
         const newFavorites = [...state.favorites, action.payload];
         localStorage.setItem(
           "odontologosFavoritos",
@@ -27,8 +27,8 @@ const reducer = (state, action) => {
         alert("¡Añadido a favoritos!", action.payload);
         return { ...state, favorites: newFavorites };
       } else {
-        console.log("El dentista ya está en favoritos.");
-        return state; // Retornar el estado actual si el dentista ya está en favoritos
+        alert("El dentista ya está en favoritos.");
+        return state;
       }
 
     case "DELETE_FAV":
@@ -47,20 +47,17 @@ const reducer = (state, action) => {
 };
 
 const Card = ({ info, buttonType }) => {
-  console.log("Información del dentista:", info); // Verifica la información del dentista
+  const { theme } = useTheme();
+  const cardClass = theme === "dark" ? "card dark" : "card";
 
   const initialState = {
     favorites: JSON.parse(localStorage.getItem("odontologosFavoritos")) || [],
   };
 
-  console.log("Estado inicial:", initialState); // Verifica el estado inicial
-
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  console.log("Estado actual:", state);
-
   return (
-    <div className="card">
+    <div className={cardClass}>
       {info && (
         <div className="information_title" key={info.id + info.name}>
           <h3>{info.name} </h3>
@@ -80,7 +77,7 @@ const Card = ({ info, buttonType }) => {
 
       {info && (
         <div className="information" key={info.id + info.username}>
-          <h5> Prof. Cirujano Dentista </h5>
+          <h5> Prof. Dental Surgeon </h5>
           <Link to={"/dentista/" + info.id}>
             <p>🔍 More information </p>
           </Link>

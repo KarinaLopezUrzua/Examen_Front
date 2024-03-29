@@ -32,6 +32,18 @@
   color: #474747;
 }
 
+.dark .information_title h4 {
+  color: #fffffd;
+}
+
+.dark .information h5 {
+  color: #fffffd;
+}
+
+.dark .information p {
+  color: #fffffd;
+}
+
 .boton_card {
   margin: 10px;
   background-color: rgba(136, 136, 136, 0.116);
@@ -41,6 +53,10 @@
   height: 40px;
   width: auto;
   cursor: pointer;
+}
+
+.dark .boton_card {
+  border: 2px solid #fffffd;
 }
 
 .card {
@@ -53,6 +69,15 @@
   border: 0.5px solid rgb(136, 136, 136, 0.3);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+}
+
+.dark .card {
+  background-color: #015778;
+  box-shadow: 0 4px 8px rgba(227, 226, 226, 0.1);
+}
+
+.dark .card:hover {
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.762);
 }
 
 .card:hover {
@@ -88,6 +113,5 @@
 }
 
 .card-detail:hover {
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
   transform: none;
 }

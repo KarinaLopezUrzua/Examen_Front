@@ -23,7 +23,6 @@
 }
 
 .cardForm:hover {
-  /* border: 1px solid rgb(36, 117, 135); */
   box-shadow: 0 4px 8px rgba(36, 117, 135, 0.54);
 }
 
@@ -60,5 +59,4 @@
 
 span {
   color: #06b6d4;
-  text-transform: uppercase;
 }

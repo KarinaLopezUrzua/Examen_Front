@@ -1,0 +1,39 @@
+.styleImg {
+  width: 10%;
+  position: relative;
+  top: 9px;
+}
+
+.styleImg1 {
+  height: 60%;
+}
+
+footer {
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 1rem;
+}
+
+.dark footer {
+  background-color: #015778;
+}
+
+.dark .styleImg {
+  filter: invert(1.4);
+}
+
+.dark .styleImg1 {
+  filter: invert(1.4);
+}
+
+.contenedor_logos {
+  display: inline-flex;
+  justify-content: center;
+}
+
+.contened {
+  width: 50px;
+  height: 50px;
+}
